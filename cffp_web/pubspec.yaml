@@ -1,14 +1,16 @@
 name: cffp_web
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: ">=3.4.3 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  go_router: ^14.2.0
+  hooks_riverpod: ^2.5.1
 
 dev_dependencies:
   flutter_test:
@@ -16,4 +18,15 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
+
+  fonts:
+    - family: Brother
+      fonts:
+        - asset: assets/fonts/Brother1816_Regular.otf
+          weight: 400
+    - family: Graduate
+      fonts:
+        - asset: assets/fonts/Graduate-Regular.ttf
+          weight: 400
