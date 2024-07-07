@@ -1,17 +1,47 @@
-import 'package:cffp_web/home_page/gui/home_page.dart';
+import 'package:cffp_web/dashboard_page/dashboard_page.dart';
+import 'package:cffp_web/games_page/gui/games_page.dart';
 import 'package:cffp_web/login_page/gui/login_page.dart';
+import 'package:cffp_web/navigation_bar/navigation_screen.dart';
+import 'package:cffp_web/standings_page/gui/standings_page.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 const loginRouteName = "loginRoute";
 const loginPath = "/login";
-const homePageRouteName = "HomePageRoute";
-const homePagePath = "/homepage";
+
+final _mainScreenNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: "mainScreenNavigatorKey");
+const dashboardPageRouteName = "dashboardRoute";
+const dashboardRoute = "/dashboard";
+
+const gamesPageRouteName = "gamesPageRoute";
+const gamesPageRoute = "/games";
+
+const standingsPageRouteName = "standingsPageRoute";
+const standingsPageRoute = "/standings";
 
 final appRouter = GoRouter(
   initialLocation: loginPath,
   routes: [
     LoginRoute(),
-    HomePageRoute(),
+
+    // allows for the navigation bar to overlay whichever go route
+    // branch is selected
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return NavigationScreen(navigationShell: navigationShell);
+      },
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _mainScreenNavigatorKey,
+          routes: [
+            DashboardRoute(),
+            GamesRoute(),
+            StandingsRoute(),
+          ],
+        ),
+      ],
+    ),
   ],
 );
 
@@ -26,13 +56,35 @@ class LoginRoute extends GoRoute {
         );
 }
 
-class HomePageRoute extends GoRoute {
-  HomePageRoute()
+class DashboardRoute extends GoRoute {
+  DashboardRoute()
       : super(
-          name: homePageRouteName,
-          path: homePagePath,
+          name: dashboardPageRouteName,
+          path: dashboardRoute,
           pageBuilder: (context, state) => const NoTransitionPage(
-            child: HomePage(),
+            child: DashboardPage(),
+          ),
+        );
+}
+
+class GamesRoute extends GoRoute {
+  GamesRoute()
+      : super(
+          name: gamesPageRouteName,
+          path: gamesPageRoute,
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: GamesPage(),
+          ),
+        );
+}
+
+class StandingsRoute extends GoRoute {
+  StandingsRoute()
+      : super(
+          name: standingsPageRouteName,
+          path: standingsPageRoute,
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: StandingsPage(),
           ),
         );
 }

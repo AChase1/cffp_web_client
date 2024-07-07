@@ -14,6 +14,6 @@ bool validatePassword(String password) {
 void login(LoginInfo loginInfo, BuildContext context) {
   if (validateUsername(loginInfo.username ?? '') &&
       validatePassword(loginInfo.password ?? '')) {
-    context.goNamed(homePageRouteName);
+    context.goNamed(dashboardPageRouteName);
   }
 }
