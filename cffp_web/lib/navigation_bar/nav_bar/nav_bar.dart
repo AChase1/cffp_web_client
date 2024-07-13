@@ -19,26 +19,26 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Row(
+        Row(
           children: [
-            CffpTitle(),
+            const CffpTitle(),
             Padding(
-              padding: EdgeInsets.only(left: 60.0, top: 10.0),
-              child: DashboardNavButton(),
+              padding: const EdgeInsets.only(left: 60.0, top: 10.0),
+              child: DashboardNavButton(isDashboardPage: isDashboardPage),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40.0, top: 10.0),
-              child: GamesNavButton(),
+              padding: const EdgeInsets.only(left: 40.0, top: 10.0),
+              child: GamesNavButton(isGamesPage: isGamesPage),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 40.0, top: 10.0),
-              child: StandingsNavButton(),
+              padding: const EdgeInsets.only(left: 40.0, top: 10.0),
+              child: StandingsNavButton(isStandingsPage: isStandingsPage),
             ),
           ],
         ),
         Divider(
           color: context.colors.tertiary,
-          thickness: 5.0,
+          thickness: 2.0,
           endIndent: 0.0,
           indent: 0.0,
         ),

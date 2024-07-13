@@ -8,7 +8,7 @@ class CffpTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "CFFP",
-      style: context.fonts.displayLarge?.copyWith(
+      style: context.fonts.displayMedium?.copyWith(
         color: context.colors.tertiary,
       ),
     );

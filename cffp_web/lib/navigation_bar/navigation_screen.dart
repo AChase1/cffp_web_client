@@ -15,9 +15,9 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
-    bool isDashboardPage = true;
-    bool isGamesPage = false;
-    bool isStandingsPage = false;
+    late bool isDashboardPage;
+    late bool isGamesPage;
+    late bool isStandingsPage;
 
     if (GoRouter.of(context)
         .routeInformationProvider
@@ -51,10 +51,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
       isGamesPage = false;
       isStandingsPage = true;
     }
+
     return Scaffold(
       backgroundColor: context.colors.primary,
       body: Padding(
-        padding: const EdgeInsets.only(left: 100.0, right: 100.0, top: 50.0),
+        padding: const EdgeInsets.only(left: 60.0, right: 60.0, top: 25.0),
         child: Column(
           children: [
             NavBar(
