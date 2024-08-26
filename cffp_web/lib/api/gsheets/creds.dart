@@ -1,3 +1,5 @@
+import 'package:cffp_web/api/models/members.dart';
+import 'package:cffp_web/api/models/week_indices.dart';
 import 'package:gsheets/gsheets.dart';
 
 const _credentials = r'''
@@ -53,5 +55,29 @@ Future<void> insertCellRow() async {
   if (sheet != null) {
     // Insert values into row 3, starting at column C (C3, D3, E3, ...)
     await sheet.values.insertRow(3, ['CIN', 'BAL', 'TEN', 'SEA'], fromColumn: 3);
+  }
+}
+
+/// Legitimate Method
+///
+/// Takes in list of [picks] for the current [week] (team is abbreviated, can be uppercase)
+/// Ensure that [member] is in lowercase
+Future<void> insertPicks(String member, List<String> picks, String week) async {
+  final sheet = await setUpSheets();
+  var weekIndex = weekIndices.entries.firstWhere(
+    (el) => el.key == week,
+    orElse: () => const MapEntry("null", {}),
+  );
+  var memberPickIndex = members.entries.firstWhere(
+    (el) => el.key == member,
+    orElse: () => const MapEntry("null", {}),
+  );
+  if (sheet != null &&
+      memberPickIndex.key != "null" &&
+      memberPickIndex.value["picks_index"] != null &&
+      weekIndex.key != "null" &&
+      weekIndex.value["row"] != null &&
+      weekIndex.value["games"] == picks.length) {
+    await sheet.values.insertColumn(memberPickIndex.value["picks_index"]! as int, picks, fromRow: weekIndex.value["row"]!);
   }
 }
