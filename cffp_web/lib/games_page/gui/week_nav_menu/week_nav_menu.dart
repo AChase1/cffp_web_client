@@ -1,10 +1,10 @@
-import 'package:cffp_web/games_page/data/games_page_model.dart';
-import 'package:cffp_web/games_page/gui/widgets/week_nav_menu/week_button.dart';
+import 'package:cffp_web/api/models/schedule.dart';
+import 'package:cffp_web/games_page/gui/week_nav_menu/week_button.dart';
 import 'package:flutter/material.dart';
 
 class WeekNavMenu extends StatelessWidget {
-  final Function(Week) onWeekClick;
-  final Week selectedWeek;
+  final Function(String?) onWeekClick;
+  final String? selectedWeek;
   const WeekNavMenu(
       {super.key, required this.onWeekClick, required this.selectedWeek});
 
@@ -14,11 +14,11 @@ class WeekNavMenu extends StatelessWidget {
       height: 550.0,
       width: 125.0,
       child: ListView.builder(
-        itemCount: Week.values.length,
+        itemCount: schedule.length,
         itemBuilder: (context, index) {
           return WeekButton(
             selectedWeek: selectedWeek,
-            week: Week.values[index],
+            week: schedule.keys.toList()[index],
             onClick: (week) => onWeekClick(week),
           );
         },

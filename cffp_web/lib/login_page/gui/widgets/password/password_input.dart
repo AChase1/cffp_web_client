@@ -4,18 +4,19 @@ import 'package:cffp_web/login_page/gui/widgets/username/username_clear_button.d
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:cffp_web/theme/decorations/container_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PasswordInput extends StatefulWidget {
+class PasswordInput extends ConsumerStatefulWidget {
   final Function(String) onUpdate;
   final LoginInfo loginInfo;
   const PasswordInput(
       {super.key, required this.onUpdate, required this.loginInfo});
 
   @override
-  State<PasswordInput> createState() => _PasswordInputState();
+  ConsumerState<PasswordInput> createState() => _PasswordInputState();
 }
 
-class _PasswordInputState extends State<PasswordInput> {
+class _PasswordInputState extends ConsumerState<PasswordInput> {
   TextEditingController passwordController = TextEditingController();
   bool isValidUsername = true;
 
@@ -43,7 +44,11 @@ class _PasswordInputState extends State<PasswordInput> {
         style: context.fonts.bodyLarge?.copyWith(
           color: context.moreColors.onTextFieldBackground,
         ),
-        onSubmitted: (value) => login(widget.loginInfo, context),
+        onSubmitted: (value) => login(
+          loginInfo: widget.loginInfo,
+          context: context,
+          ref: ref,
+        ),
         controller: passwordController,
         cursorColor: context.colors.primary,
         onChanged: (value) {
