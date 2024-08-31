@@ -1,6 +1,6 @@
-import 'package:cffp_web/games_page/data/games_page_model.dart';
-import 'package:cffp_web/games_page/gui/widgets/week_game_panels/week_picks_panel.dart';
-import 'package:cffp_web/games_page/gui/widgets/week_nav_menu/week_nav_menu.dart';
+import 'package:cffp_web/api/models/schedule.dart';
+import 'package:cffp_web/games_page/gui/picks_panel/picks_panel.dart';
+import 'package:cffp_web/games_page/gui/week_nav_menu/week_nav_menu.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +12,11 @@ class GamesPage extends StatefulWidget {
 }
 
 class _GamesPageState extends State<GamesPage> {
-  Week selectedWeek = Week.week1;
+  String? selectedWeek = schedule.keys.firstWhere((key) => key == "Week 1");
 
-  void updateSelectedWeek(Week week) {
+  void updateSelectedWeek(String? week) {
     setState(() {
-      selectedWeek = week;
+      selectedWeek = schedule.keys.firstWhere((key) => key == week);
     });
   }
 
@@ -42,7 +42,7 @@ class _GamesPageState extends State<GamesPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              WeekGamePanel(selectedWeek: selectedWeek),
+              PicksPanel(selectedWeek: selectedWeek),
             ],
           ),
         )

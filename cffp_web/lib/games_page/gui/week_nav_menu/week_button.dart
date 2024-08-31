@@ -1,12 +1,10 @@
-import 'package:cffp_web/games_page/data/games_page_model.dart';
-import 'package:cffp_web/games_page/functions/game_page_functions.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class WeekButton extends StatefulWidget {
-  final Week selectedWeek;
-  final Week week;
-  final Function(Week) onClick;
+  final String? selectedWeek;
+  final String? week;
+  final Function(String?) onClick;
   const WeekButton(
       {super.key,
       required this.week,
@@ -20,7 +18,6 @@ class WeekButton extends StatefulWidget {
 class _WeekButtonState extends State<WeekButton> {
   @override
   Widget build(BuildContext context) {
-    print("Selected => ${widget.selectedWeek}\nWeek ==> ${widget.week}");
     return TextButton(
       style: TextButton.styleFrom(padding: EdgeInsets.zero),
       onPressed: () {
@@ -30,7 +27,7 @@ class _WeekButtonState extends State<WeekButton> {
         padding: const EdgeInsets.symmetric(vertical: 20.0),
         child: Text(
           textAlign: TextAlign.left,
-          getWeekString(widget.week),
+          widget.week ?? '',
           style: context.fonts.headlineSmall?.copyWith(
             color: widget.selectedWeek == widget.week
                 ? context.colors.tertiary

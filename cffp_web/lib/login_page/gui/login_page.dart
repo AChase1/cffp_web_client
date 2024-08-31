@@ -7,15 +7,16 @@ import 'package:cffp_web/login_page/gui/widgets/username/username.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:cffp_web/theme/decorations/container_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   LoginInfo loginInfo = LoginInfo();
 
   void updateUsername(String input) {
@@ -69,7 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 50.0),
                   child: LoginButton(
-                    onClick: () => login(loginInfo, context),
+                    onClick: () => login(
+                      loginInfo: loginInfo,
+                      context: context,
+                      ref: ref,
+                    ),
                   ),
                 )
               ],
