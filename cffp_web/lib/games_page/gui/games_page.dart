@@ -1,6 +1,4 @@
-import 'package:cffp_web/games_page/data/games_page_model.dart';
 // import 'package:cffp_web/games_page/gui/widgets/week_game_panels/week_picks_panel.dart';
-import 'package:cffp_web/games_page/gui/widgets/week_nav_menu/week_nav_menu.dart';
 import 'package:cffp_web/api/models/schedule.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/picks_panel.dart';
 import 'package:cffp_web/games_page/gui/week_nav_menu/week_nav_menu.dart';
