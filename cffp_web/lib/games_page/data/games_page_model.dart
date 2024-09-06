@@ -21,16 +21,14 @@ enum Week {
   week18,
 }
 
-class 
-
-class Matchup{
+class Matchup {
   Team? homeTeam;
   Team? visitorTeam;
   DateTime? startTime;
 
   Matchup({this.homeTeam, this.startTime, this.visitorTeam});
 
-  String printObject(){
+  String printObject() {
     return "Home Team: ${homeTeam?.printObject()}\nVisitor Team: ${visitorTeam?.printObject()}\nStart Time: $startTime";
   }
 }
@@ -43,8 +41,7 @@ class Team {
 
   Team({this.logo, this.name, this.record, this.teamColors});
 
-  String printObject(){
+  String printObject() {
     return "Name: $name\nRecord: $record\nTeam Colors: ${teamColors.toString()}";
   }
-
 }

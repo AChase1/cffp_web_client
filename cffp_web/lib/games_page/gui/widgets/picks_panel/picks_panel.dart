@@ -1,6 +1,6 @@
 import 'package:cffp_web/games_page/data/games_page_model.dart';
 import 'package:cffp_web/games_page/functions/game_page_functions.dart';
-import 'package:cffp_web/games_page/gui/widgets/week_game_panels/week_title.dart';
+import 'package:cffp_web/games_page/gui/widgets/picks_panel/game_panel_header/game_time_title.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:cffp_web/theme/decorations/container_decoration.dart';
 import 'package:flutter/material.dart';

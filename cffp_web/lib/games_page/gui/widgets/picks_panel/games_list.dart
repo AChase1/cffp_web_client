@@ -1,3 +1,4 @@
+import 'package:cffp_web/games_page/data/games_page_model.dart';
 import 'package:flutter/material.dart';
 
 class WeekPicksList extends StatefulWidget {
@@ -15,7 +16,7 @@ class _WeekPicksListState extends State<WeekPicksList> {
       width: 400.0,
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return Matchup();
+          return Text("Banana");
         },
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:cffp_web/games_page/data/games_page_model.dart';
-import 'package:cffp_web/games_page/gui/widgets/week_game_panels/week_picks_panel.dart';
+// import 'package:cffp_web/games_page/gui/widgets/week_game_panels/week_picks_panel.dart';
 import 'package:cffp_web/games_page/gui/widgets/week_nav_menu/week_nav_menu.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,8 @@ class _GamesPageState extends State<GamesPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              WeekGamePanel(selectedWeek: selectedWeek),
+              // WeekGamePanel(selectedWeek: selectedWeek),
+              SizedBox.shrink()
             ],
           ),
         )
