@@ -19,8 +19,8 @@ class GameTimeTitle extends StatelessWidget {
         value: selectedGameTime,
         icon: const SizedBox(),
         style:
-            context.fonts.bodyLarge?.copyWith(color: context.colors.tertiary),
-        dropdownColor: context.colors.secondary,
+            context.fonts.bodyLarge?.copyWith(color: context.colors.onPrimary),
+        dropdownColor: context.colors.primary,
         items: allGameTimes.map((time) {
           return DropdownMenuItem<String>(
             value: time,

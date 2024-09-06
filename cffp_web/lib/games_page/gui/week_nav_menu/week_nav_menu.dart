@@ -12,7 +12,7 @@ class WeekNavMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 550.0,
-      width: 125.0,
+      width: 120.0,
       child: ListView.builder(
         itemCount: schedule.length,
         itemBuilder: (context, index) {

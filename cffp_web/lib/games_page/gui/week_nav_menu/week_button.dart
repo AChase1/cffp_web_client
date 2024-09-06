@@ -1,4 +1,5 @@
 import 'package:cffp_web/theme/app_theme.dart';
+import 'package:cffp_web/theme/decorations/container_decoration.dart';
 import 'package:flutter/material.dart';
 
 class WeekButton extends StatefulWidget {
@@ -25,14 +26,33 @@ class _WeekButtonState extends State<WeekButton> {
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0),
-        child: Text(
-          textAlign: TextAlign.left,
-          widget.week ?? '',
-          style: context.fonts.headlineSmall?.copyWith(
-            color: widget.selectedWeek == widget.week
-                ? context.colors.tertiary
-                : context.colors.tertiary.withOpacity(0.3),
-          ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: widget.selectedWeek == widget.week
+                    ? BoxDecoration(
+                        border: Border.all(
+                          color: context.colors.tertiary,
+                          width: 1.5,
+                        ),
+                      )
+                    : const BoxDecoration(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    widget.week ?? '',
+                    style: context.fonts.headlineSmall?.copyWith(
+                      color: widget.selectedWeek == widget.week
+                          ? context.colors.onSecondary
+                          : context.colors.onPrimary.withOpacity(0.3),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

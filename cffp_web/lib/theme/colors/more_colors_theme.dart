@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 MoreColors moreColorsTheme() {
   return MoreColors(
-    textFieldBackground: AppColors.white,
+    textFieldBackground: AppColors.grey,
     onTextFieldBackground: AppColors.darkNavy,
   );
 }

@@ -23,7 +23,7 @@ class _LoginButtonState extends State<LoginButton> {
           Expanded(
             child: Container(
               decoration: containerDecoration(
-                  context: context, color: context.colors.tertiaryContainer),
+                  context: context, color: context.colors.secondaryContainer),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),

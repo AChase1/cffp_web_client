@@ -13,13 +13,13 @@ class PicksPanelPicksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 450.0,
-      width: 450.0,
+      height: 375.0,
+      width: 600.0,
       child: ListView.builder(
         itemCount: selectedMatchups.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
             child: GameMatchup(
               currentIndex: index,
               matchup: selectedMatchups[index],

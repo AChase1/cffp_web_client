@@ -33,19 +33,18 @@ class _PickTeamButtonState extends State<PickTeamButton>
       duration: const Duration(milliseconds: 500),
       vsync: this,
     );
-    _animation = Tween<double>(begin: 20.0, end: 0.0).animate(_controller);
+    _animation = Tween<double>(begin: 20.0, end: -20.0).animate(_controller);
+    _colorBackgroundWidth = widget.isSelected ? 210.0 : 50.0;
   }
 
   @override
   Widget build(BuildContext context) {
-    _colorBackgroundWidth = widget.isSelected ? 190.0 : 50.0;
+    _colorBackgroundWidth = widget.isSelected ? 210.0 : 50.0;
     if (widget.isSelected) {
       _controller.forward();
     } else {
       _controller.reverse();
     }
-
-    print("animation value ==> ${_animation.value}");
     return InkWell(
       onTap: () {
         widget.onClick();
@@ -54,6 +53,7 @@ class _PickTeamButtonState extends State<PickTeamButton>
         children: [
           Container(
             decoration: containerDecoration(context: context),
+            height: 50.0,
           ),
           Align(
             alignment:
@@ -66,11 +66,14 @@ class _PickTeamButtonState extends State<PickTeamButton>
                       ? ContainerFullHomeClipper(sizeOfClip: _animation.value)
                       : ContainerFullAwayClipper(sizeOfClip: _animation.value),
                   child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 500),
+                    decoration: containerDecoration(
+                      context: context,
+                      color: widget.team["primaryColor"] as Color,
+                    ),
+                    duration: const Duration(milliseconds: 300),
                     width: _colorBackgroundWidth,
-                    curve: Curves.easeOut,
-                    height: 65.0,
-                    color: widget.team["primaryColor"] as Color,
+                    curve: Curves.easeInCirc,
+                    height: 50.0,
                     child: Stack(children: [
                       widget.isHome
                           ? Positioned(
@@ -95,9 +98,8 @@ class _PickTeamButtonState extends State<PickTeamButton>
                               child: Opacity(
                                 opacity: widget.isSelected ? 1.0 : 0.3,
                                 child: Image.asset(
-                                  //alignment: Alignment.centerLeft,
-                                  height: 100.0,
-                                  width: 100.0,
+                                  height: 85.0,
+                                  width: 85.0,
                                   widget.team["logo"],
                                 ),
                               ),
@@ -110,8 +112,8 @@ class _PickTeamButtonState extends State<PickTeamButton>
           ),
           Padding(
             padding: widget.isHome
-                ? const EdgeInsets.only(right: 80.0, top: 10.0, bottom: 10.0)
-                : const EdgeInsets.only(left: 80.0, top: 10.0, bottom: 10.0),
+                ? const EdgeInsets.only(right: 80.0, top: 3.0, bottom: 3.0)
+                : const EdgeInsets.only(left: 80.0, top: 3.0, bottom: 3.0),
             child: Column(
               children: [
                 Align(
@@ -137,6 +139,7 @@ class _PickTeamButtonState extends State<PickTeamButton>
                     textAlign: widget.isHome ? TextAlign.right : TextAlign.left,
                     "${widget.team["name"]}",
                     style: context.fonts.headlineSmall?.copyWith(
+                      fontSize: 18,
                       color: widget.isSelected
                           ? widget.team["onPrimaryColor"]
                           : context.colors.onPrimary,

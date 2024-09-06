@@ -1,4 +1,5 @@
 import 'package:cffp_web/navigation_bar/nav_bar/nav_bar.dart';
+import 'package:cffp_web/navigation_bar/nav_bar/profile_button.dart';
 import 'package:cffp_web/router/app_router.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -55,16 +56,30 @@ class _NavigationScreenState extends State<NavigationScreen> {
     return Scaffold(
       backgroundColor: context.colors.primary,
       body: Padding(
-        padding: const EdgeInsets.only(left: 60.0, right: 60.0, top: 25.0),
-        child: Column(
+        padding: const EdgeInsets.only(left: 60.0, right: 60.0, top: 15.0),
+        child: Stack(
           children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 80.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: widget.navigationShell,
+                  ),
+                ],
+              ),
+            ),
             NavBar(
               isDashboardPage: isDashboardPage,
               isGamesPage: isGamesPage,
               isStandingsPage: isStandingsPage,
             ),
-            Expanded(
-              child: widget.navigationShell,
+            const Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: EdgeInsets.only(top: 15.0),
+                child: ProfileButton(),
+              ),
             ),
           ],
         ),

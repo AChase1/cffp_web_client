@@ -15,7 +15,7 @@ class UsernameClearButton extends StatelessWidget {
       child: Icon(
         Icons.close_outlined,
         size: 20.0,
-        color: context.colors.primary,
+        color: context.colors.onPrimary,
       ),
     );
   }

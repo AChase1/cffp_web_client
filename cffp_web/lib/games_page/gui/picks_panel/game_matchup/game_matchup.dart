@@ -34,11 +34,13 @@ class _GameMatchupState extends ConsumerState<GameMatchup> {
   void updateHomeSelection() {
     setState(() {
       isHomeSelected = !isHomeSelected;
+      print("home selected ==> $isHomeSelected");
       isAwaySelected = isAwaySelected == false
           ? false
           : isHomeSelected
               ? false
               : true;
+      print("away selected ==> $isAwaySelected");
     });
   }
 
@@ -55,26 +57,6 @@ class _GameMatchupState extends ConsumerState<GameMatchup> {
 
   @override
   Widget build(BuildContext context) {
-    if (isAwaySelected) {
-      ref.read(currentUserProvider).updatePick(
-            selectedWeek: widget.selectedWeek ?? '',
-            teamName: widget.matchup?["away"]["name"],
-            pick: PickType.away,
-          );
-    } else if (isHomeSelected) {
-      ref.read(currentUserProvider).updatePick(
-            selectedWeek: widget.selectedWeek ?? '',
-            teamName: widget.matchup?["home"]["name"],
-            pick: PickType.home,
-          );
-    } else {
-      ref.read(currentUserProvider).updatePick(
-            selectedWeek: widget.selectedWeek ?? '',
-            teamName: widget.matchup?["home"]["name"],
-            pick: PickType.none,
-          );
-    }
-
     return Row(
       children: [
         Expanded(
@@ -82,7 +64,7 @@ class _GameMatchupState extends ConsumerState<GameMatchup> {
             team: widget.matchup?["away"],
             isHome: false,
             onClick: () => updateAwaySelection(),
-            isSelected: widget.matchup?["pick"] == PickType.away ? true : false,
+            isSelected: isAwaySelected,
           ),
         ),
         const Padding(
@@ -94,7 +76,7 @@ class _GameMatchupState extends ConsumerState<GameMatchup> {
             team: widget.matchup?["home"],
             isHome: true,
             onClick: () => updateHomeSelection(),
-            isSelected: widget.matchup?["pick"] == PickType.home ? true : false,
+            isSelected: isHomeSelected,
           ),
         ),
       ],

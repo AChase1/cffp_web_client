@@ -18,6 +18,6 @@ BoxDecoration containerDecoration({
             color: context.colors.shadow.withOpacity(0.3),
           ),
         ],
-    color: color ?? context.colors.secondaryContainer,
+    color: color ?? context.colors.primaryContainer,
   );
 }

@@ -9,7 +9,8 @@ class VersusText extends StatelessWidget {
     return Center(
       child: Text(
         "VS",
-        style: context.fonts.bodyLarge,
+        style:
+            context.fonts.bodyLarge?.copyWith(color: context.colors.onPrimary),
       ),
     );
   }

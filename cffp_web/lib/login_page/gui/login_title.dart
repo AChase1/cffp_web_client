@@ -8,8 +8,8 @@ class LoginTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "Login",
-      style:
-          context.fonts.displayMedium?.copyWith(color: context.colors.tertiary),
+      style: context.fonts.displayMedium
+          ?.copyWith(color: context.colors.onPrimary),
     );
   }
 }

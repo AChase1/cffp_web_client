@@ -43,9 +43,8 @@ class ContainerFullHomeClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final path = Path();
     path.lineTo(size.width, 0);
-
     path.lineTo(size.width, size.height);
-    path.lineTo(20, size.height);
+    path.lineTo(sizeOfClip, size.height);
     path.close();
 
     return path;
@@ -64,7 +63,6 @@ class ContainerFullAwayClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final path = Path();
     path.lineTo(size.width, 0);
-
     path.lineTo(size.width - sizeOfClip, size.height);
     path.lineTo(0, size.height);
     path.close();

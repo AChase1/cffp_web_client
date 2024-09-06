@@ -1,42 +1,42 @@
 import 'package:cffp_web/login_page/data/login_model.dart';
 import 'package:cffp_web/login_page/functions/login_functions.dart';
-import 'package:cffp_web/login_page/gui/widgets/username/username_clear_button.dart';
+import 'package:cffp_web/login_page/gui/username/username_clear_button.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:cffp_web/theme/decorations/container_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class UsernameInput extends ConsumerStatefulWidget {
+class PasswordInput extends ConsumerStatefulWidget {
   final Function(String) onUpdate;
   final LoginInfo loginInfo;
-  const UsernameInput(
+  const PasswordInput(
       {super.key, required this.onUpdate, required this.loginInfo});
 
   @override
-  ConsumerState<UsernameInput> createState() => _UsernameInputState();
+  ConsumerState<PasswordInput> createState() => _PasswordInputState();
 }
 
-class _UsernameInputState extends ConsumerState<UsernameInput> {
-  TextEditingController usernameController = TextEditingController();
-  bool isValidUsername = true;
+class _PasswordInputState extends ConsumerState<PasswordInput> {
+  TextEditingController passwordController = TextEditingController();
+  bool isValidPassword = true;
 
-  void validateField(String usernameInput) {
+  void validateField(String passwordInput) {
     setState(() {
-      isValidUsername = validateUsername(usernameInput) ? true : false;
+      isValidPassword = validatePassword(passwordInput) ? true : false;
     });
   }
 
   void clearInput() {
     setState(() {
-      usernameController.clear();
-      isValidUsername = true;
+      passwordController.clear();
+      isValidPassword = true;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (usernameController.text.isEmpty) {
-      isValidUsername = true;
+    if (passwordController.text.isEmpty) {
+      isValidPassword = true;
     }
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
@@ -49,15 +49,15 @@ class _UsernameInputState extends ConsumerState<UsernameInput> {
           context: context,
           ref: ref,
         ),
-        controller: usernameController,
+        controller: passwordController,
         cursorColor: context.colors.primary,
         onChanged: (value) {
           validateField(value);
           widget.onUpdate(value);
         },
         decoration: InputDecoration(
-          hintText: "Ex: JohnSmith01",
-          suffix: usernameController.text.isNotEmpty
+          hintText: "Ex: Password_#1234",
+          suffix: passwordController.text.isNotEmpty
               ? UsernameClearButton(onClick: () => clearInput())
               : const SizedBox(),
           error: Row(
@@ -66,19 +66,21 @@ class _UsernameInputState extends ConsumerState<UsernameInput> {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.fastOutSlowIn,
-                  height: isValidUsername ? 0.0 : 35.0,
-                  decoration: containerDecoration(
-                      context: context,
-                      color: context.colors.error,
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(5.0),
-                        bottomRight: Radius.circular(5.0),
-                      )),
+                  height: isValidPassword ? 0.0 : 35.0,
+                  decoration: isValidPassword
+                      ? const BoxDecoration()
+                      : containerDecoration(
+                          context: context,
+                          color: context.colors.error,
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(5.0),
+                            bottomRight: Radius.circular(5.0),
+                          )),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15.0, vertical: 5.0),
                     child: Text(
-                      "Username is incorrect",
+                      "Password is incorrect",
                       style: context.fonts.bodyLarge
                           ?.copyWith(color: context.colors.onError),
                     ),

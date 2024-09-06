@@ -22,7 +22,9 @@ class _GamesNavButtonState extends State<GamesNavButton> {
       child: Text(
         "GAMES",
         style: context.fonts.headlineSmall?.copyWith(
-          color: widget.isGamesPage ? context.colors.tertiary : context.colors.tertiary.withOpacity(0.3),
+          color: widget.isGamesPage
+              ? context.colors.onPrimary
+              : context.colors.onPrimary.withOpacity(0.3),
           fontSize: 25.0,
         ),
       ),
