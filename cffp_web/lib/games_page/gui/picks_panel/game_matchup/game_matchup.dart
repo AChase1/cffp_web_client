@@ -1,4 +1,6 @@
 import 'package:cffp_web/api/models/schedule.dart';
+import 'package:cffp_web/api/providers/login_provider.dart';
+import 'package:cffp_web/api/providers/picks_provider.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/game_matchup/pick_team_button.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/game_matchup/versus_text.dart';
 import 'package:cffp_web/shared/providers.dart';
@@ -32,27 +34,37 @@ class _GameMatchupState extends ConsumerState<GameMatchup> {
   }
 
   void updateHomeSelection() {
-    setState(() {
-      isHomeSelected = !isHomeSelected;
-      print("home selected ==> $isHomeSelected");
-      isAwaySelected = isAwaySelected == false
-          ? false
-          : isHomeSelected
-              ? false
-              : true;
-      print("away selected ==> $isAwaySelected");
-    });
+    if (widget.matchup != null) {
+      String teamPickName = widget.matchup!['home']['abb'];
+      final member = ref.read(loginProvider.notifier).getCurrMember();
+      ref.read(picksProvider.notifier).changePick(member, widget.matchup!['i'], teamPickName);
+      setState(() {
+        isHomeSelected = !isHomeSelected;
+        // print("home selected ==> $isHomeSelected");
+        isAwaySelected = isAwaySelected == false
+            ? false
+            : isHomeSelected
+                ? false
+                : true;
+        // print("away selected ==> $isAwaySelected");
+      });
+    }
   }
 
   void updateAwaySelection() {
-    setState(() {
-      isAwaySelected = !isAwaySelected;
-      isHomeSelected = isHomeSelected == false
-          ? false
-          : isAwaySelected
-              ? false
-              : true;
-    });
+    if (widget.matchup != null) {
+      String teamPickName = widget.matchup!['away']['abb'];
+      final member = ref.read(loginProvider.notifier).getCurrMember();
+      ref.read(picksProvider.notifier).changePick(member, widget.matchup!['i'], teamPickName);
+      setState(() {
+        isAwaySelected = !isAwaySelected;
+        isHomeSelected = isHomeSelected == false
+            ? false
+            : isAwaySelected
+                ? false
+                : true;
+      });
+    }
   }
 
   @override

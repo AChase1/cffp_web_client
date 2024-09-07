@@ -41,4 +41,8 @@ class LoginProviderNotifier extends AsyncNotifier<String> {
       return "";
     });
   }
+
+  String getCurrMember() {
+    return state.asData!.value;
+  }
 }

@@ -28,4 +28,17 @@ class PicksProviderNotifier extends AsyncNotifier<Map<String, List<String>>> {
       return _getCurrPicks(week);
     });
   }
+
+  void changePick(String member, int gameIndex, String newTeamPick) async {
+    final prevState = state.asData!.value;
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      prevState[member]![gameIndex - 1] = newTeamPick;
+      return prevState;
+    });
+  }
+
+  String getPick(String member, int gameIndex) {
+    return state.asData!.value[member]![gameIndex];
+  }
 }

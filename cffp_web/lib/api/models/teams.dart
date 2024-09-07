@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:cffp_web/api/models/divisions.dart';
 
 final teams = {
-  "ari": {
+  "arz": {
+    "abb": "arz",
     "city": "Arizona",
     "division": Divisions.nfcWest,
     "name": "Cardinals",
@@ -13,6 +14,7 @@ final teams = {
     "logo": "assets/logos/arizona_cardinals.png",
   },
   "atl": {
+    "abb": "atl",
     "city": "Atlanta",
     "division": Divisions.nfcSouth,
     "name": "Falcons",
@@ -23,6 +25,7 @@ final teams = {
     "logo": "assets/logos/atlanta_falcons.png",
   },
   "bal": {
+    "abb": "bal",
     "city": "Baltimore",
     "division": Divisions.afcNorth,
     "name": "Ravens",
@@ -33,6 +36,7 @@ final teams = {
     "logo": "assets/logos/baltimore_ravens.png",
   },
   "buf": {
+    "abb": "buf",
     "city": "Buffalo",
     "division": Divisions.afcEast,
     "name": "Bills",
@@ -43,6 +47,7 @@ final teams = {
     "logo": "assets/logos/buffalo_bills.png",
   },
   "car": {
+    "abb": "car",
     "city": "Carolina",
     "division": Divisions.nfcSouth,
     "name": "Panthers",
@@ -53,6 +58,7 @@ final teams = {
     "logo": "assets/logos/carolina_panthers.png",
   },
   "chi": {
+    "abb": "chi",
     "city": "Chicago",
     "division": Divisions.nfcNorth,
     "name": "Bears",
@@ -62,6 +68,7 @@ final teams = {
     "logo": "assets/logos/chicago_bears.png",
   },
   "cin": {
+    "abb": "cin",
     "city": "Cincinnati",
     "division": Divisions.afcNorth,
     "name": "Bengals",
@@ -71,6 +78,7 @@ final teams = {
     "logo": "assets/logos/cincinnati_bengals.png",
   },
   "cle": {
+    "abb": "cle",
     "city": "Cleveland",
     "division": Divisions.afcNorth,
     "name": "Browns",
@@ -80,6 +88,7 @@ final teams = {
     "logo": "assets/logos/cleveland_browns.png",
   },
   "dal": {
+    "abb": "dal",
     "city": "Dallas",
     "division": Divisions.nfcEast,
     "name": "Cowboys",
@@ -90,6 +99,7 @@ final teams = {
     "logo": "assets/logos/dallas_cowboys.png",
   },
   "den": {
+    "abb": "den",
     "city": "Denver",
     "division": Divisions.afcWest,
     "name": "Broncos",
@@ -99,6 +109,7 @@ final teams = {
     "logo": "assets/logos/denver_broncos.png",
   },
   "det": {
+    "abb": "det",
     "city": "Detroit",
     "division": Divisions.nfcNorth,
     "name": "Lions",
@@ -108,6 +119,7 @@ final teams = {
     "logo": "assets/logos/detroit_lions.png",
   },
   "gb": {
+    "abb": "gb",
     "city": "Green Bay",
     "division": Divisions.nfcNorth,
     "name": "Packers",
@@ -117,6 +129,7 @@ final teams = {
     "logo": "assets/logos/green_bay_packers.png",
   },
   "hou": {
+    "abb": "hou",
     "city": "Houston",
     "division": Divisions.afcSouth,
     "name": "Texans",
@@ -126,6 +139,7 @@ final teams = {
     "logo": "assets/logos/houston_texans.png",
   },
   "ind": {
+    "abb": "ind",
     "city": "Indianapolis",
     "division": Divisions.afcSouth,
     "name": "Colts",
@@ -135,6 +149,7 @@ final teams = {
     "logo": "assets/logos/indianapolis_colts.png",
   },
   "jax": {
+    "abb": "jax",
     "city": "Jacksonville",
     "division": Divisions.afcSouth,
     "name": "Jaguars",
@@ -145,6 +160,7 @@ final teams = {
     "logo": "assets/logos/jacksonville_jaguars.png",
   },
   "kc": {
+    "abb": "kc",
     "city": "Kansas City",
     "division": Divisions.afcWest,
     "name": "Chiefs",
@@ -155,6 +171,7 @@ final teams = {
     "logo": "assets/logos/kansas_city_chiefs.png",
   },
   "lac": {
+    "abb": "lac",
     "city": "Los Angeles",
     "division": Divisions.afcWest,
     "name": "Chargers",
@@ -165,6 +182,7 @@ final teams = {
     "logo": "assets/logos/los_angeles_chargers.png",
   },
   "lar": {
+    "abb": "lar",
     "city": "Los Angeles",
     "division": Divisions.nfcWest,
     "name": "Rams",
@@ -174,6 +192,7 @@ final teams = {
     "logo": "assets/logos/los_angeles_rams.png",
   },
   "lv": {
+    "abb": "lv",
     "city": "Las Vegas",
     "division": Divisions.afcWest,
     "name": "Raiders",
@@ -183,6 +202,7 @@ final teams = {
     "logo": "assets/logos/las_vegas_raiders.png",
   },
   "mia": {
+    "abb": "mia",
     "city": "Miami",
     "division": Divisions.afcEast,
     "name": "Dolphins",
@@ -193,6 +213,7 @@ final teams = {
     "logo": "assets/logos/miami_dolphins.png",
   },
   "min": {
+    "abb": "min",
     "city": "Minnesota",
     "division": Divisions.nfcNorth,
     "name": "Vikings",
@@ -203,6 +224,7 @@ final teams = {
     "logo": "assets/logos/minnesota_vikings.png",
   },
   "ne": {
+    "abb": "ne",
     "city": "New England",
     "division": Divisions.afcEast,
     "name": "Patriots",
@@ -213,6 +235,7 @@ final teams = {
     "logo": "assets/logos/new_england_patriots.png",
   },
   "no": {
+    "abb": "no",
     "city": "New Orleans",
     "division": Divisions.nfcSouth,
     "name": "Saints",
@@ -222,6 +245,7 @@ final teams = {
     "logo": "assets/logos/new_orleans_saints.png",
   },
   "nyg": {
+    "abb": "nyg",
     "city": "New York",
     "division": Divisions.nfcEast,
     "name": "Giants",
@@ -232,6 +256,7 @@ final teams = {
     "logo": "assets/logos/new_york_giants.png",
   },
   "nyj": {
+    "abb": "nyj",
     "city": "New York",
     "division": Divisions.afcEast,
     "name": "Jets",
@@ -241,6 +266,7 @@ final teams = {
     "logo": "assets/logos/new_york_jets.png",
   },
   "phi": {
+    "abb": "phi",
     "city": "Philadelphia",
     "division": Divisions.nfcEast,
     "name": "Eagles",
@@ -251,6 +277,7 @@ final teams = {
     "logo": "assets/logos/philedelphia_eagles.png",
   },
   "pit": {
+    "abb": "pit",
     "city": "Pittsburgh",
     "division": Divisions.afcNorth,
     "name": "Steelers",
@@ -261,6 +288,7 @@ final teams = {
     "logo": "assets/logos/pittsburgh_steelers.png",
   },
   "sea": {
+    "abb": "sea",
     "city": "Seattle",
     "division": Divisions.nfcWest,
     "name": "Seahawks",
@@ -271,6 +299,7 @@ final teams = {
     "logo": "assets/logos/seattle_seahawks.png",
   },
   "sf": {
+    "abb": "sf",
     "city": "San Francisco",
     "division": Divisions.nfcWest,
     "name": "49ers",
@@ -280,6 +309,7 @@ final teams = {
     "logo": "assets/logos/san_francisco_49ers.png",
   },
   "was": {
+    "abb": "was",
     "city": "Washington",
     "division": Divisions.nfcEast,
     "name": "Commanders",
@@ -289,6 +319,7 @@ final teams = {
     "logo": "assets/logos/washington_commanders.png",
   },
   "tb": {
+    "abb": "tb",
     "city": "Tampa Bay",
     "division": Divisions.nfcSouth,
     "name": "Buccaneers",
@@ -299,6 +330,7 @@ final teams = {
     "logo": "assets/logos/tampa_bay_buccaneers.png",
   },
   "ten": {
+    "abb": "ten",
     "city": "Tennessee",
     "division": Divisions.afcSouth,
     "name": "Titans",
