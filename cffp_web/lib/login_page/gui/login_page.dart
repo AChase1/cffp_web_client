@@ -1,4 +1,6 @@
 import 'package:cffp_web/api/providers/login_provider.dart';
+import 'package:cffp_web/api/providers/picks_provider.dart';
+import 'package:cffp_web/api/providers/week_provider.dart';
 import 'package:cffp_web/login_page/data/login_model.dart';
 import 'package:cffp_web/login_page/gui/login_button.dart';
 import 'package:cffp_web/login_page/gui/login_title.dart';
@@ -20,6 +22,7 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _LoginPageState extends ConsumerState<LoginPage> {
   LoginInfo loginInfo = LoginInfo();
+  bool loading = false;
 
   void updateUsername(String input) {
     setState(() {
@@ -70,10 +73,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     ],
                   ),
                   LoginButton(
+                    loading: loading,
                     onClick: () async {
                       if (loginInfo.password != null) {
+                        setState(() {
+                          loading = true;
+                        });
                         await ref.read(loginProvider.notifier).validatePwd(loginInfo.password!);
-                        if (ref.read(loginProvider.notifier).getCurrMember().isNotEmpty) {
+                        if (ref.read(loginProvider.notifier).getCurrMember()?.isNotEmpty ?? false) {
+                          await ref.read(picksProvider.notifier).getCurrPicks(ref.read(weekProvider));
+                          setState(() {
+                            loading = false;
+                          });
                           // ignore: use_build_context_synchronously
                           context.goNamed(gamesPageRouteName);
                         }

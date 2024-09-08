@@ -20,51 +20,77 @@ const _credentials = r'''
 
 const _spreadsheetId = '1buZUQWo2Q9jViNCO0lKj3yiQ21b3b3Doi3sfwnZ1JhI';
 
-Future<Worksheet?> setUpSheets() async {
+Future<Worksheet?> setUpPicksSheets() async {
   final gsheets = GSheets(_credentials);
-  final ss = await gsheets.spreadsheet(_spreadsheetId);
-  final sheet = ss.worksheetByTitle('Picks');
+  print('2.1');
+  Spreadsheet? ss;
+  try {
+    ss = await gsheets.spreadsheet(_spreadsheetId);
+  } catch (e) {
+    print('Pick sheet exception: $e');
+  }
+  print('2.2');
+  final sheet = ss?.worksheetByTitle('Picks');
+  if (sheet == null) {
+    print('Got null pick sheet');
+  }
+  print('2.3');
   return sheet;
 }
 
-Future<void> getCellData() async {
-  final sheet = await setUpSheets();
-  if (sheet != null) {
-    // Get value at B2
-    await sheet.values.value(column: 2, row: 2);
+Future<Worksheet?> setUpOoglaSheet() async {
+  final gsheets = GSheets(_credentials);
+  Spreadsheet? ss;
+  try {
+    ss = await gsheets.spreadsheet(_spreadsheetId);
+  } catch (e) {
+    print('Oogla sheet Exception: $e');
   }
+  final sheet = ss?.worksheetByTitle('oogla');
+  if (sheet == null) {
+    print('Got null oogla sheet');
+  }
+  return sheet;
 }
 
-Future<void> getCellColumn() async {
-  final sheet = await setUpSheets();
-  if (sheet != null) {
-    // Get all values in column B starting at B2
-    await sheet.values.column(2, fromRow: 2);
-  }
-}
+// Future<void> getCellData() async {
+//   final sheet = await setUpPicksSheets();
+//   if (sheet != null) {
+//     // Get value at B2
+//     await sheet.values.value(column: 2, row: 2);
+//   }
+// }
 
-Future<void> insertCellData() async {
-  final sheet = await setUpSheets();
-  if (sheet != null) {
-    // Insert new value into C2
-    await sheet.values.insertValue('Banana', row: 2, column: 3);
-  }
-}
+// Future<void> getCellColumn() async {
+//   final sheet = await setUpPicksSheets();
+//   if (sheet != null) {
+//     // Get all values in column B starting at B2
+//     await sheet.values.column(2, fromRow: 2);
+//   }
+// }
 
-Future<void> insertCellRow() async {
-  final sheet = await setUpSheets();
-  if (sheet != null) {
-    // Insert values into row 3, starting at column C (C3, D3, E3, ...)
-    await sheet.values.insertRow(3, ['CIN', 'BAL', 'TEN', 'SEA'], fromColumn: 3);
-  }
-}
+// Future<void> insertCellData() async {
+//   final sheet = await setUpPicksSheets();
+//   if (sheet != null) {
+//     // Insert new value into C2
+//     await sheet.values.insertValue('Banana', row: 2, column: 3);
+//   }
+// }
+
+// Future<void> insertCellRow() async {
+//   final sheet = await setUpPicksSheets();
+//   if (sheet != null) {
+//     // Insert values into row 3, starting at column C (C3, D3, E3, ...)
+//     await sheet.values.insertRow(3, ['CIN', 'BAL', 'TEN', 'SEA'], fromColumn: 3);
+//   }
+// }
 
 /// Legitimate Method
 ///
 /// Takes in list of [picks] for the current [week] (team is abbreviated, can be uppercase)
 /// Ensure that [member] is in lowercase
 Future<void> insertPicks(String member, List<String> picks, String week) async {
-  final sheet = await setUpSheets();
+  final sheet = await setUpPicksSheets();
   var weekIndex = weekIndices.entries.firstWhere(
     (el) => el.key == week,
     orElse: () => const MapEntry("null", {}),
@@ -84,8 +110,28 @@ Future<void> insertPicks(String member, List<String> picks, String week) async {
 }
 
 /// Legitimate method
+Future<void> insertPick(String member, int gameWeekIndex, String pick, String week) async {
+  final sheet = await setUpPicksSheets();
+  var weekIndex = weekIndices.entries.firstWhere(
+    (el) => el.key == week,
+    orElse: () => const MapEntry("null", {}),
+  );
+  var memberPickIndex = members.entries.firstWhere(
+    (el) => el.key == member,
+    orElse: () => const MapEntry("null", {}),
+  );
+  if (sheet != null &&
+      memberPickIndex.key != "null" &&
+      memberPickIndex.value["picks_index"] != null &&
+      weekIndex.key != "null" &&
+      weekIndex.value["row"] != null) {
+    await sheet.values.insertValue(pick, column: memberPickIndex.value["picks_index"]! as int, row: weekIndex.value["row"]! + gameWeekIndex);
+  }
+}
+
+/// Legitimate method
 Future<List<String>> getPicks(String member, String week) async {
-  final sheet = await setUpSheets();
+  final sheet = await setUpPicksSheets();
   var weekIndex = weekIndices.entries.firstWhere(
     (el) => el.key == week,
     orElse: () => const MapEntry("null", {}),
@@ -107,7 +153,7 @@ Future<List<String>> getPicks(String member, String week) async {
 
 /// Legitimate method
 Future<String> validatePassword(String guessedPwd) async {
-  final sheet = await setUpSheets();
+  final sheet = await setUpOoglaSheet();
   if (sheet != null && guessedPwd.isNotEmpty) {
     for (var i = 1; i < 15; i++) {
       var oogla = await sheet.values.value(column: i, row: 7);

@@ -3,8 +3,9 @@ import 'package:cffp_web/theme/decorations/container_decoration.dart';
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatefulWidget {
+  final bool loading;
   final Function() onClick;
-  const LoginButton({super.key, required this.onClick});
+  const LoginButton({super.key, required this.onClick, required this.loading});
 
   @override
   State<LoginButton> createState() => _LoginButtonState();
@@ -22,16 +23,18 @@ class _LoginButtonState extends State<LoginButton> {
         children: [
           Expanded(
             child: Container(
-              decoration: containerDecoration(
-                  context: context, color: context.colors.secondaryContainer),
+              decoration: containerDecoration(context: context, color: context.colors.secondaryContainer),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Text(
-                    "LOGIN",
-                    style: context.fonts.headlineSmall
-                        ?.copyWith(color: context.colors.primary),
-                  ),
+                  child: widget.loading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(
+                          "LOGIN",
+                          style: context.fonts.headlineSmall?.copyWith(color: context.colors.primary),
+                        ),
                 ),
               ),
             ),

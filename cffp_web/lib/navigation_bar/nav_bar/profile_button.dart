@@ -44,7 +44,7 @@ class _ProfileButtonState extends ConsumerState<ProfileButton> {
                             isSelected = false;
                           });
                           await ref.read(loginProvider.notifier).logout();
-                          if (ref.read(loginProvider.notifier).getCurrMember().isEmpty) {
+                          if (ref.read(loginProvider.notifier).getCurrMember()?.isEmpty ?? true) {
                             // ignore: use_build_context_synchronously
                             context.goNamed(loginRouteName);
                           }
@@ -83,7 +83,7 @@ class _ProfileButtonState extends ConsumerState<ProfileButton> {
             child: Align(
               alignment: Alignment.topCenter,
               child: Text(
-                ref.read(loginProvider.notifier).getCurrMember().toUpperCase(),
+                ref.read(loginProvider.notifier).getCurrMember()?.toUpperCase() ?? "LOADING",
                 style: context.fonts.bodyLarge?.copyWith(
                   fontSize: 20.0,
                   color: context.colors.onPrimary,

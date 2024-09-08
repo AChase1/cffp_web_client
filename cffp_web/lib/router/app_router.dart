@@ -1,6 +1,7 @@
 import 'package:cffp_web/dashboard_page/dashboard_page.dart';
 import 'package:cffp_web/games_page/gui/games_page.dart';
 import 'package:cffp_web/login_page/gui/login_page.dart';
+import 'package:cffp_web/main.dart';
 import 'package:cffp_web/navigation_bar/navigation_screen.dart';
 import 'package:cffp_web/standings_page/gui/standings_page.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,7 @@ import 'package:go_router/go_router.dart';
 const loginRouteName = "loginRoute";
 const loginPath = "/login";
 
-final _mainScreenNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: "mainScreenNavigatorKey");
+final _mainScreenNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "mainScreenNavigatorKey");
 const dashboardPageRouteName = "dashboardRoute";
 const dashboardRoute = "/dashboard";
 
@@ -21,7 +21,7 @@ const standingsPageRouteName = "standingsPageRoute";
 const standingsPageRoute = "/standings";
 
 final appRouter = GoRouter(
-  initialLocation: loginPath,
+  initialLocation: initView == 0 ? loginPath : gamesPageRoute,
   routes: [
     LoginRoute(),
 
