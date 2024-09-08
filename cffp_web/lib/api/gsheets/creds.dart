@@ -18,12 +18,12 @@ const _credentials = r'''
 }
 ''';
 
-const _spreadsheetId = '';
+const _spreadsheetId = '1buZUQWo2Q9jViNCO0lKj3yiQ21b3b3Doi3sfwnZ1JhI';
 
 Future<Worksheet?> setUpSheets() async {
   final gsheets = GSheets(_credentials);
   final ss = await gsheets.spreadsheet(_spreadsheetId);
-  final sheet = ss.worksheetByTitle('CFFP 20242025');
+  final sheet = ss.worksheetByTitle('Picks');
   return sheet;
 }
 

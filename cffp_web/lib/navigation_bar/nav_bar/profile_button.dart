@@ -1,17 +1,19 @@
+import 'package:cffp_web/api/providers/login_provider.dart';
 import 'package:cffp_web/router/app_router.dart';
 import 'package:cffp_web/theme/app_theme.dart';
 import 'package:cffp_web/theme/decorations/container_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ProfileButton extends StatefulWidget {
+class ProfileButton extends ConsumerStatefulWidget {
   const ProfileButton({super.key});
 
   @override
-  State<ProfileButton> createState() => _ProfileButtonState();
+  ConsumerState<ProfileButton> createState() => _ProfileButtonState();
 }
 
-class _ProfileButtonState extends State<ProfileButton> {
+class _ProfileButtonState extends ConsumerState<ProfileButton> {
   late bool isSelected;
 
   @override
@@ -37,11 +39,15 @@ class _ProfileButtonState extends State<ProfileButton> {
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           setState(() {
                             isSelected = false;
                           });
-                          context.goNamed(loginRouteName);
+                          await ref.read(loginProvider.notifier).logout();
+                          if (ref.read(loginProvider.notifier).getCurrMember().isEmpty) {
+                            // ignore: use_build_context_synchronously
+                            context.goNamed(loginRouteName);
+                          }
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -77,7 +83,7 @@ class _ProfileButtonState extends State<ProfileButton> {
             child: Align(
               alignment: Alignment.topCenter,
               child: Text(
-                "Name",
+                ref.read(loginProvider.notifier).getCurrMember().toUpperCase(),
                 style: context.fonts.bodyLarge?.copyWith(
                   fontSize: 20.0,
                   color: context.colors.onPrimary,
