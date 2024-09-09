@@ -152,6 +152,39 @@ Future<List<String>> getPicks(String member, String week) async {
 }
 
 /// Legitimate method
+Future<Map<String, List<String>>> getAllMemberPicks(String member) async {
+  final sheet = await setUpPicksSheets();
+  var memberPickIndex = members.entries.firstWhere(
+    (el) => el.key == member,
+    orElse: () => const MapEntry("null", {}),
+  );
+  if (sheet != null && memberPickIndex.key != "null" && memberPickIndex.value["picks_index"] != null) {
+    var result = await sheet.values.column(memberPickIndex.value["picks_index"]! as int, fromRow: 2, length: 272);
+    return {
+      "1": result.sublist(weekIndices["1"]!["row"]! - 2, weekIndices["2"]!["row"]! - 2),
+      "2": result.sublist(weekIndices["2"]!["row"]! - 2, weekIndices["3"]!["row"]! - 2),
+      "3": result.sublist(weekIndices["3"]!["row"]! - 2, weekIndices["4"]!["row"]! - 2),
+      "4": result.sublist(weekIndices["4"]!["row"]! - 2, weekIndices["5"]!["row"]! - 2),
+      "5": result.sublist(weekIndices["5"]!["row"]! - 2, weekIndices["6"]!["row"]! - 2),
+      "6": result.sublist(weekIndices["6"]!["row"]! - 2, weekIndices["7"]!["row"]! - 2),
+      "7": result.sublist(weekIndices["7"]!["row"]! - 2, weekIndices["8"]!["row"]! - 2),
+      "8": result.sublist(weekIndices["8"]!["row"]! - 2, weekIndices["9"]!["row"]! - 2),
+      "9": result.sublist(weekIndices["9"]!["row"]! - 2, weekIndices["10"]!["row"]! - 2),
+      "10": result.sublist(weekIndices["10"]!["row"]! - 2, weekIndices["11"]!["row"]! - 2),
+      "11": result.sublist(weekIndices["11"]!["row"]! - 2, weekIndices["12"]!["row"]! - 2),
+      "12": result.sublist(weekIndices["12"]!["row"]! - 2, weekIndices["13"]!["row"]! - 2),
+      "13": result.sublist(weekIndices["13"]!["row"]! - 2, weekIndices["14"]!["row"]! - 2),
+      "14": result.sublist(weekIndices["14"]!["row"]! - 2, weekIndices["15"]!["row"]! - 2),
+      "15": result.sublist(weekIndices["15"]!["row"]! - 2, weekIndices["16"]!["row"]! - 2),
+      "16": result.sublist(weekIndices["16"]!["row"]! - 2, weekIndices["17"]!["row"]! - 2),
+      "17": result.sublist(weekIndices["17"]!["row"]! - 2, weekIndices["18"]!["row"]! - 2),
+      "18": result.sublist(weekIndices["18"]!["row"]! - 2, weekIndices["18"]!["row"]! + 14),
+    };
+  }
+  return {};
+}
+
+/// Legitimate method
 Future<String> validatePassword(String guessedPwd) async {
   final sheet = await setUpOoglaSheet();
   if (sheet != null && guessedPwd.isNotEmpty) {
