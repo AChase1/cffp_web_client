@@ -15,9 +15,11 @@ dependencies:
   shared_preferences: ^2.3.2
   morphable_shape: ^1.6.6
   cffp_widgets:
-      git: 
-        url: https://github.com/AChase1/cffp_widgets.git
-        ref: main
+    path: "../../cffp_widgets"
+  flutter_secure_storage: ^9.2.2
+    #git: 
+      #url: https://github.com/AChase1/cffp_widgets.git
+      #ref: main
   
 
 dev_dependencies:

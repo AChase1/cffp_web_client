@@ -5,8 +5,7 @@ import 'package:cffp_web/games_page/gui/picks_panel/headers/game_time_title.dart
 import 'package:cffp_web/games_page/gui/picks_panel/headers/home_title.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/picks_list.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/save_button.dart';
-import 'package:cffp_web/theme/app_theme.dart';
-import 'package:cffp_web/theme/decorations/container_decoration.dart';
+import 'package:cffp_widgets/cffp_widgets.dart';
 import 'package:flutter/material.dart';
 
 class PicksPanel extends StatefulWidget {

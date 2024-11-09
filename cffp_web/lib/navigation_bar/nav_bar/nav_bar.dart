@@ -1,7 +1,6 @@
 import 'package:cffp_web/navigation_bar/nav_bar/cffp_title.dart';
 import 'package:cffp_web/navigation_bar/nav_bar/games_nav_button.dart';
-import 'package:cffp_web/navigation_bar/nav_bar/profile_button.dart';
-import 'package:cffp_web/theme/app_theme.dart';
+import 'package:cffp_widgets/cffp_widgets.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
