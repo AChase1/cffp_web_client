@@ -19,38 +19,34 @@ class _NavigationScreenState extends State<NavigationScreen> {
     late bool isDashboardPage;
     late bool isGamesPage;
     late bool isStandingsPage;
+    late bool isPlayoffsPage;
 
-    if (GoRouter.of(context)
-        .routeInformationProvider
-        .value
-        .uri
-        .toString()
-        .contains(dashboardRoute)) {
+    if (GoRouter.of(context).routeInformationProvider.value.uri.toString().contains(dashboardRoute)) {
       isDashboardPage = true;
       isGamesPage = false;
       isStandingsPage = false;
+      isPlayoffsPage = false;
     }
 
-    if (GoRouter.of(context)
-        .routeInformationProvider
-        .value
-        .uri
-        .toString()
-        .contains(gamesPageRoute)) {
+    if (GoRouter.of(context).routeInformationProvider.value.uri.toString().contains(gamesPageRoute)) {
       isDashboardPage = false;
       isGamesPage = true;
       isStandingsPage = false;
+      isPlayoffsPage = false;
     }
 
-    if (GoRouter.of(context)
-        .routeInformationProvider
-        .value
-        .uri
-        .toString()
-        .contains(standingsPageRoute)) {
+    if (GoRouter.of(context).routeInformationProvider.value.uri.toString().contains(standingsPageRoute)) {
       isDashboardPage = false;
       isGamesPage = false;
       isStandingsPage = true;
+      isPlayoffsPage = false;
+    }
+
+    if (GoRouter.of(context).routeInformationProvider.value.uri.toString().contains(playoffPageRoute)) {
+      isDashboardPage = false;
+      isGamesPage = false;
+      isStandingsPage = false;
+      isPlayoffsPage = true;
     }
 
     return Scaffold(
@@ -69,11 +65,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 ],
               ),
             ),
-            NavBar(
-              isDashboardPage: isDashboardPage,
-              isGamesPage: isGamesPage,
-              isStandingsPage: isStandingsPage,
-            ),
+            // NavBar(
+            //   isDashboardPage: isDashboardPage,
+            //   isGamesPage: isGamesPage,
+            //   isStandingsPage: isStandingsPage,
+            // ),
             const Align(
               alignment: Alignment.topRight,
               child: Padding(

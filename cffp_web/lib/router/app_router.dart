@@ -3,6 +3,7 @@ import 'package:cffp_web/games_page/gui/games_page.dart';
 import 'package:cffp_web/features/login_page/gui_login_page.dart';
 import 'package:cffp_web/main.dart';
 import 'package:cffp_web/navigation_bar/navigation_screen.dart';
+import 'package:cffp_web/playoffs_page/playoff_page.dart';
 import 'package:cffp_web/standings_page/gui/standings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,8 +11,7 @@ import 'package:go_router/go_router.dart';
 const loginRouteName = "loginRoute";
 const loginPath = "/login";
 
-final rootNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: "mainScreenNavigatorKey");
+final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "mainScreenNavigatorKey");
 const dashboardPageRouteName = "dashboardRoute";
 const dashboardRoute = "/dashboard";
 
@@ -20,6 +20,9 @@ const gamesPageRoute = "/games";
 
 const standingsPageRouteName = "standingsPageRoute";
 const standingsPageRoute = "/standings";
+
+const playoffPageRouteName = "playoffPageRoute";
+const playoffPageRoute = "/playoffs";
 
 final appRouter = GoRouter(
   initialLocation: initView == 0 ? loginPath : gamesPageRoute,
@@ -35,11 +38,7 @@ final appRouter = GoRouter(
       branches: [
         StatefulShellBranch(
           navigatorKey: rootNavigatorKey,
-          routes: [
-            DashboardRoute(),
-            GamesRoute(),
-            StandingsRoute(),
-          ],
+          routes: [PlayoffsRoute()],
         ),
       ],
     ),
@@ -88,4 +87,8 @@ class StandingsRoute extends GoRoute {
             child: StandingsPage(),
           ),
         );
+}
+
+class PlayoffsRoute extends GoRoute {
+  PlayoffsRoute() : super(name: playoffPageRouteName, path: playoffPageRoute, pageBuilder: (context, state) => const NoTransitionPage(child: PlayoffPage()));
 }

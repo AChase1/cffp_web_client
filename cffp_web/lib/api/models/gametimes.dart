@@ -9,6 +9,7 @@ enum GameTimes {
   fri815pm,
   sat100pm,
   sat430pm,
+  sat800pm,
   sun930am,
   sun100pm,
   sun405pm,
@@ -47,6 +48,7 @@ extension GametimeToString on GameTimes {
       case GameTimes.mon730pm:
         return "7:30 PM";
       case GameTimes.mon800pm:
+      case GameTimes.sat800pm:
         return "8:00 PM";
       case GameTimes.thu815pm:
       case GameTimes.fri815pm:
@@ -80,6 +82,7 @@ extension GametimeToString on GameTimes {
         return "FRI";
       case GameTimes.sat100pm:
       case GameTimes.sat430pm:
+      case GameTimes.sat800pm:
         return "SAT";
       case GameTimes.sun100pm:
       case GameTimes.sun405pm:

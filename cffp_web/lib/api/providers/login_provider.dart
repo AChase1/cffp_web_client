@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cffp_web/api/gsheets/creds.dart';
+// import 'package:cffp_web/api/gsheets/creds.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,18 +15,18 @@ class LoginProviderNotifier extends AsyncNotifier<String> {
     return loggedIn ?? "";
   }
 
-  Future<String> _validatePwd(String guess) async {
-    final prefs = await SharedPreferences.getInstance();
-    var result = await validatePassword(guess);
-    await prefs.setString(_prefskey, result);
-    return result;
-  }
+  // Future<String> _validatePwd(String guess) async {
+  // final prefs = await SharedPreferences.getInstance();
+  // var result = await validatePassword(guess);
+  // await prefs.setString(_prefskey, result);
+  // return result;
+  // }
 
   Future<void> validatePwd(String guess) async {
     state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
-      return _validatePwd(guess);
-    });
+    // state = await AsyncValue.guard(() async {
+    //   return _validatePwd(guess);
+    // });
   }
 
   Future<void> _logout() async {

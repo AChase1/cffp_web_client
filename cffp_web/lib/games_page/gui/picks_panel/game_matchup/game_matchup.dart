@@ -1,7 +1,4 @@
 // import 'package:cffp_web/api/models/schedule.dart';
-import 'package:cffp_web/api/providers/login_provider.dart';
-import 'package:cffp_web/api/providers/picks_provider.dart';
-import 'package:cffp_web/api/providers/week_provider.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/game_matchup/pick_team_button.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/game_matchup/versus_text.dart';
 // import 'package:cffp_web/shared/providers.dart';
@@ -36,13 +33,13 @@ class _GameMatchupState extends ConsumerState<GameMatchup> {
 
   void updateHomeSelection() {
     if (widget.matchup != null) {
-      String teamPickName = widget.matchup!['home']['abb'];
-      final member = ref.read(loginProvider.notifier).getCurrMember();
-      if (member != null) {
-        final week = ref.read(weekProvider);
-        print("1: $week - $member - ${widget.matchup!['i']} - $teamPickName");
-        ref.read(picksProvider.notifier).changePick(member, widget.matchup!['i'], teamPickName, week);
-      }
+      // String teamPickName = widget.matchup!['home']['abb'];
+      // final member = ref.read(loginProvider.notifier).getCurrMember();
+      // if (member != null) {
+      //   final week = ref.read(weekProvider);
+      //   print("1: $week - $member - ${widget.matchup!['i']} - $teamPickName");
+      //   ref.read(picksProvider.notifier).changePick(member, widget.matchup!['i'], teamPickName, week);
+      // }
       setState(() {
         isHomeSelected = !isHomeSelected;
         // print("home selected ==> $isHomeSelected");
@@ -58,13 +55,13 @@ class _GameMatchupState extends ConsumerState<GameMatchup> {
 
   void updateAwaySelection() {
     if (widget.matchup != null) {
-      String teamPickName = widget.matchup!['away']['abb'];
-      final member = ref.read(loginProvider.notifier).getCurrMember();
-      if (member != null) {
-        final week = ref.read(weekProvider);
-        print("1: $week - $member - ${widget.matchup!['i']} - $teamPickName");
-        ref.read(picksProvider.notifier).changePick(member, widget.matchup!['i'], teamPickName, week);
-      }
+      // String teamPickName = widget.matchup!['away']['abb'];
+      // final member = ref.read(loginProvider.notifier).getCurrMember();
+      // if (member != null) {
+      //   final week = ref.read(weekProvider);
+      //   print("1: $week - $member - ${widget.matchup!['i']} - $teamPickName");
+      //   ref.read(picksProvider.notifier).changePick(member, widget.matchup!['i'], teamPickName, week);
+      // }
       setState(() {
         isAwaySelected = !isAwaySelected;
         isHomeSelected = isHomeSelected == false
