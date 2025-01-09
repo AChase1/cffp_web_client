@@ -46,6 +46,7 @@ bool validatePassword(String password) {
 }
 
 void login({required LoginInfo loginInfo, required BuildContext context, required WidgetRef ref}) {
+  print('oogla: ${loginInfo.username} - ${loginInfo.password}');
   if (validateUsername(loginInfo.username ?? '') && validatePassword(loginInfo.password ?? '')) {
     // get user from database during production
     context.goNamed(playoffPageRouteName);

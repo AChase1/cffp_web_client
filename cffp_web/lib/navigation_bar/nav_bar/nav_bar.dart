@@ -1,17 +1,13 @@
 import 'package:cffp_web/navigation_bar/nav_bar/cffp_title.dart';
 import 'package:cffp_web/navigation_bar/nav_bar/games_nav_button.dart';
-import 'package:cffp_widgets/cffp_widgets.dart';
+import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
   final bool isDashboardPage;
   final bool isGamesPage;
   final bool isStandingsPage;
-  const NavBar(
-      {super.key,
-      required this.isDashboardPage,
-      required this.isGamesPage,
-      required this.isStandingsPage});
+  const NavBar({super.key, required this.isDashboardPage, required this.isGamesPage, required this.isStandingsPage});
 
   @override
   Widget build(BuildContext context) {

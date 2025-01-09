@@ -1,4 +1,4 @@
-import 'package:cffp_widgets/cffp_widgets.dart';
+import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class GameTimeTitle extends StatelessWidget {
@@ -18,16 +18,14 @@ class GameTimeTitle extends StatelessWidget {
       child: DropdownButton<String>(
         value: selectedGameTime,
         icon: const SizedBox(),
-        style:
-            context.fonts.bodyLarge?.copyWith(color: context.colors.onPrimary),
+        style: context.fonts.bodyLarge?.copyWith(color: context.colors.onPrimary),
         dropdownColor: context.colors.primary,
         items: allGameTimes.map((time) {
           return DropdownMenuItem<String>(
             value: time,
             child: Text(
               time,
-              style: context.fonts.headlineSmall
-                  ?.copyWith(color: context.colors.tertiary),
+              style: context.fonts.headlineSmall?.copyWith(color: context.colors.tertiary),
             ),
           );
         }).toList(),

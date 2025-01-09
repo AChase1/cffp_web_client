@@ -1,4 +1,4 @@
-import 'package:cffp_widgets/cffp_widgets.dart';
+import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class VersusText extends StatelessWidget {
@@ -9,8 +9,7 @@ class VersusText extends StatelessWidget {
     return Center(
       child: Text(
         "VS",
-        style:
-            context.fonts.bodyLarge?.copyWith(color: context.colors.onPrimary),
+        style: context.fonts.bodyLarge?.copyWith(color: context.colors.onPrimary),
       ),
     );
   }

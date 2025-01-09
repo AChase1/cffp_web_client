@@ -1,12 +1,13 @@
 import 'package:cffp_web/dashboard_page/dashboard_page.dart';
 import 'package:cffp_web/games_page/gui/games_page.dart';
-import 'package:cffp_web/features/login_page/gui_login_page.dart';
 import 'package:cffp_web/main.dart';
 import 'package:cffp_web/navigation_bar/navigation_screen.dart';
 import 'package:cffp_web/playoffs_page/playoff_page.dart';
 import 'package:cffp_web/standings_page/gui/standings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../login_page/gui/login_page.dart';
 
 const loginRouteName = "loginRoute";
 const loginPath = "/login";
@@ -25,9 +26,9 @@ const playoffPageRouteName = "playoffPageRoute";
 const playoffPageRoute = "/playoffs";
 
 final appRouter = GoRouter(
-  initialLocation: initView == 0 ? loginPath : gamesPageRoute,
+  initialLocation: playoffPageRoute,
   routes: [
-    LoginRoute(),
+    PlayoffsRoute(),
 
     // allows for the navigation bar to overlay whichever go route
     // branch is selected
@@ -38,7 +39,7 @@ final appRouter = GoRouter(
       branches: [
         StatefulShellBranch(
           navigatorKey: rootNavigatorKey,
-          routes: [PlayoffsRoute()],
+          routes: [LoginRoute()],
         ),
       ],
     ),

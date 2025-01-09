@@ -5,8 +5,10 @@ import 'package:cffp_web/games_page/gui/picks_panel/headers/game_time_title.dart
 import 'package:cffp_web/games_page/gui/picks_panel/headers/home_title.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/picks_list.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/save_button.dart';
-import 'package:cffp_widgets/cffp_widgets.dart';
+import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../theme/decorations/container_decoration.dart';
 
 class PicksPanel extends StatefulWidget {
   final String? selectedWeek;
@@ -31,8 +33,7 @@ class _PicksPanelState extends State<PicksPanel> {
     super.initState();
     allGameTimes = schedule[widget.selectedWeek]
             ?.map(
-              (e) =>
-                  "${(e["day"] as GameTimes).gameDateToString()} ${(e["day"] as GameTimes).gameTimeToString()}",
+              (e) => "${(e["day"] as GameTimes).gameDateToString()} ${(e["day"] as GameTimes).gameTimeToString()}",
             )
             .toSet()
             .toList() ??
@@ -45,9 +46,7 @@ class _PicksPanelState extends State<PicksPanel> {
   @override
   Widget build(BuildContext context) {
     final selectedMatchups = schedule[widget.selectedWeek]
-        ?.where((matchup) =>
-            "${(matchup["day"] as GameTimes).gameDateToString()} ${(matchup["day"] as GameTimes).gameTimeToString()}" ==
-            selectedGameTime)
+        ?.where((matchup) => "${(matchup["day"] as GameTimes).gameDateToString()} ${(matchup["day"] as GameTimes).gameTimeToString()}" == selectedGameTime)
         .toSet()
         .toList();
     return Container(
@@ -107,8 +106,7 @@ class _PicksPanelState extends State<PicksPanel> {
                       child: GameTimeTitle(
                         allGameTimes: allGameTimes,
                         selectedGameTime: selectedGameTime,
-                        onItemClick: (time) =>
-                            udpateSelectedGameTime(gameTime: time),
+                        onItemClick: (time) => udpateSelectedGameTime(gameTime: time),
                       ),
                     ),
                   ),

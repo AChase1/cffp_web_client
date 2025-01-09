@@ -1,5 +1,7 @@
-import 'package:cffp_widgets/cffp_widgets.dart';
+import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../theme/decorations/container_decoration.dart';
 
 class SaveButton extends StatefulWidget {
   const SaveButton({super.key});
@@ -18,15 +20,13 @@ class _SaveButtonState extends State<SaveButton> {
         children: [
           Expanded(
             child: Container(
-              decoration: containerDecoration(
-                  context: context, color: context.colors.secondaryContainer),
+              decoration: containerDecoration(context: context, color: context.colors.secondaryContainer),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     "SAVE",
-                    style: context.fonts.headlineSmall
-                        ?.copyWith(color: context.colors.primary),
+                    style: context.fonts.headlineSmall?.copyWith(color: context.colors.primary),
                   ),
                 ),
               ),

@@ -1,5 +1,8 @@
-import 'package:cffp_widgets/cffp_widgets.dart';
+import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../theme/decorations/clipper_decoration.dart';
+import '../../../../theme/decorations/container_decoration.dart';
 
 class PickTeamButton extends StatefulWidget {
   final Function() onClick;
@@ -18,8 +21,7 @@ class PickTeamButton extends StatefulWidget {
   State<PickTeamButton> createState() => _PickTeamButtonState();
 }
 
-class _PickTeamButtonState extends State<PickTeamButton>
-    with SingleTickerProviderStateMixin {
+class _PickTeamButtonState extends State<PickTeamButton> with SingleTickerProviderStateMixin {
   late double _colorBackgroundWidth;
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -54,15 +56,12 @@ class _PickTeamButtonState extends State<PickTeamButton>
             height: 50.0,
           ),
           Align(
-            alignment:
-                widget.isHome ? Alignment.centerRight : Alignment.centerLeft,
+            alignment: widget.isHome ? Alignment.centerRight : Alignment.centerLeft,
             child: AnimatedBuilder(
               animation: _animation,
               builder: (context, child) {
                 return ClipPath(
-                  clipper: widget.isHome
-                      ? ContainerFullHomeClipper(sizeOfClip: _animation.value)
-                      : ContainerFullAwayClipper(sizeOfClip: _animation.value),
+                  clipper: widget.isHome ? ContainerFullHomeClipper(sizeOfClip: _animation.value) : ContainerFullAwayClipper(sizeOfClip: _animation.value),
                   child: AnimatedContainer(
                     decoration: containerDecoration(
                       context: context,
@@ -109,38 +108,28 @@ class _PickTeamButtonState extends State<PickTeamButton>
             ),
           ),
           Padding(
-            padding: widget.isHome
-                ? const EdgeInsets.only(right: 80.0, top: 3.0, bottom: 3.0)
-                : const EdgeInsets.only(left: 80.0, top: 3.0, bottom: 3.0),
+            padding: widget.isHome ? const EdgeInsets.only(right: 80.0, top: 3.0, bottom: 3.0) : const EdgeInsets.only(left: 80.0, top: 3.0, bottom: 3.0),
             child: Column(
               children: [
                 Align(
-                  alignment: widget.isHome
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
+                  alignment: widget.isHome ? Alignment.centerRight : Alignment.centerLeft,
                   child: Text(
                     textAlign: widget.isHome ? TextAlign.right : TextAlign.left,
                     "${widget.team["city"]}",
                     style: context.fonts.bodyLarge?.copyWith(
                       fontSize: 13.0,
-                      color: widget.isSelected
-                          ? widget.team["onPrimaryColor"]
-                          : context.colors.onPrimary,
+                      color: widget.isSelected ? widget.team["onPrimaryColor"] : context.colors.onPrimary,
                     ),
                   ),
                 ),
                 Align(
-                  alignment: widget.isHome
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
+                  alignment: widget.isHome ? Alignment.centerRight : Alignment.centerLeft,
                   child: Text(
                     textAlign: widget.isHome ? TextAlign.right : TextAlign.left,
                     "${widget.team["name"]}",
                     style: context.fonts.headlineSmall?.copyWith(
                       fontSize: 18,
-                      color: widget.isSelected
-                          ? widget.team["onPrimaryColor"]
-                          : context.colors.onPrimary,
+                      color: widget.isSelected ? widget.team["onPrimaryColor"] : context.colors.onPrimary,
                     ),
                   ),
                 ),

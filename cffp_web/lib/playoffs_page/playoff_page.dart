@@ -148,21 +148,30 @@ class _PicksPanel extends State<PicksPanel> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 550.0,
-      width: 600.0,
-      child: ListView.builder(
-        itemCount: selectedMatchups.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: GameMatchup(
-              currentIndex: index,
-              matchup: selectedMatchups[index],
-              selectedWeek: '999',
+    return Scaffold(
+      backgroundColor: context.colors.primary,
+      body: SizedBox(
+        height: 550.0,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: 550.0,
+            width: 600.0,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: selectedMatchups.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                  child: GameMatchup(
+                    currentIndex: index,
+                    matchup: selectedMatchups[index],
+                    selectedWeek: '999',
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

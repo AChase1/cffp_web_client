@@ -2,7 +2,7 @@
 import 'package:cffp_web/api/models/schedule.dart';
 import 'package:cffp_web/games_page/gui/picks_panel/picks_panel.dart';
 import 'package:cffp_web/games_page/gui/week_nav_menu/week_nav_menu.dart';
-import 'package:cffp_widgets/cffp_widgets.dart';
+import 'package:cffp_web/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class GamesPage extends StatefulWidget {
